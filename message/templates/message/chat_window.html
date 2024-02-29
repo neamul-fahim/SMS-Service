@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Number Details</title>
+    <!-- Include jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Number Details: {{ number }}</h1>
+    <ul id="messages">
+      <!-- Messages will be dynamically added here -->
+    </ul>
+
+    <script>
+      var chatWindowUrl = "{% url 'chat_window' number %}";
+
+      function updateMessages() {
+        $.ajax({
+          url: chatWindowUrl,
+          success: function (data) {
+            $("#messages").empty();
+            $.each(data.messages, function (index, message) {
+              $("#messages").append(
+                "<li>" + message.body + " - " + message.timestamp + "</li>"
+              );
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error("Error fetching messages:", error);
+          },
+        });
+      }
+
+      $(document).ready(function () {
+        updateMessages();
+        setInterval(updateMessages, 5000); // Refresh messages every 5 seconds
+      });
+    </script>
+  </body>
+</html>
