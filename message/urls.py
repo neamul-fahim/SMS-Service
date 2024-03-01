@@ -6,5 +6,7 @@ urlpatterns = [
     path('webhook/', views.WebhookView.as_view(), name='webhook'),
     path('chat-window/<str:number>/',
          views.ChatWindowView.as_view(), name='chat_window'),
+    path('message/<str:number>/',
+         views.MessageView.as_view(), name='message'),
 
 ]

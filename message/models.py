@@ -15,3 +15,8 @@ class Message(models.Model):
 class Number(models.Model):
     number = models.CharField(max_length=30)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+
+class HomePageDesign(models.Model):
+    introduction_header = models.CharField(max_length=100)
+    introduction_body = models.CharField(max_length=1000)

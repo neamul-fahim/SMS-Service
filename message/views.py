@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views import View
-from .models import Message, Number
+from .models import Message, Number, HomePageDesign
 from twilio.twiml.messaging_response import MessagingResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -42,10 +42,19 @@ class HomeView(View):
 
     def get(self, request, *args, **kwargs):
         numbers = Number.objects.all()
+        homepage_design = HomePageDesign.objects.first()
         context = {
-            'numbers': numbers
+            'numbers': numbers,
+            'homepage_design': homepage_design
         }
         return render(request, self.template_name, context)
+
+
+class HomeDesignView(View):
+
+    def get(self, request, *args, **kwargs):
+        homepage_design = HomePageDesign.objects.first()
+        return render(request, 'home.html', {'homepage_design': homepage_design})
 
 
 class ChatWindowView(View):
@@ -53,11 +62,25 @@ class ChatWindowView(View):
 
     def get(self, request, number):
         messages = Message.objects.filter(
-            to_number=number).values('message_body', 'timestamp')
+            to_number=number)
         # return JsonResponse({'number_instance': number, 'messages': list(messages)})
-        print(f'--------------------------{number}---------------{messages}')
+        print(
+            f'--------------------------{number}---------------{list(messages)}')
         context = {
-            # 'number_instance': number,
-            'messages': list(messages)
+            'number': number,
+            # 'messages': list(messages)
         }
         return render(request, self.template_name, context)
+
+
+class MessageView(View):
+    def get(self, request, number):
+        messages = Message.objects.filter(
+            to_number=number)
+        # return JsonResponse({'number_instance': number, 'messages': list(messages)})
+        message_list = [{'from_number': message.from_number, 'message_body': message.message_body,
+                         'timestamp': message.timestamp} for message in messages]
+        print(
+            f'--------------------------{number}---------------{message_list}')
+
+        return JsonResponse({'number': number, 'messages': message_list})
