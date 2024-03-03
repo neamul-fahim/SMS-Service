@@ -8,5 +8,7 @@ urlpatterns = [
          views.ChatWindowView.as_view(), name='chat_window'),
     path('message/<str:number>/',
          views.MessageView.as_view(), name='message'),
+    path('edit-homepage-design/',
+         views.MessageView.as_view(), name='edit_homepage_design'),
 
 ]

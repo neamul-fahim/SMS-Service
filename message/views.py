@@ -41,10 +41,15 @@ class HomeView(View):
     template_name = 'message/home.html'
 
     def get(self, request, *args, **kwargs):
-        numbers = Number.objects.all()
+        numbers = Number.objects.all().order_by('-timestamp')
+        if numbers:
+            latest_number = numbers[0]
+        else:
+            latest_number = None
         homepage_design = HomePageDesign.objects.first()
         context = {
             'numbers': numbers,
+            'latest_number': latest_number,
             'homepage_design': homepage_design
         }
         return render(request, self.template_name, context)

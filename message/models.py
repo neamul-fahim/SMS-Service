@@ -1,4 +1,5 @@
 from django.db import models
+from django_countries.fields import CountryField
 
 
 class Message(models.Model):
@@ -14,6 +15,7 @@ class Message(models.Model):
 
 class Number(models.Model):
     number = models.CharField(max_length=30)
+    country = models.CharField(max_length=100, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
 

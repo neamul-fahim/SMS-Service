@@ -1,165 +1,111 @@
 # <!DOCTYPE html>
 # <html>
 #   <head>
-#     <title>Number Details</title>
-#     <!-- Include jQuery library -->
-#     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+#     <title>Home Page</title>
+#     <!-- Bootstrap CSS -->
+#     <link
+#       rel="stylesheet"
+#       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+#     />
 #     <style>
+#       /* Custom styles */
 #       body {
-#         font-family: Arial, sans-serif;
-#         margin: 0;
-#         padding: 0;
-#         background-color: #f0f0f0;
+#         font-family: "Roboto", sans-serif;
+#         background-color: #f8f9fa;
 #       }
-
-#       /* Scroll bar style */
-#       ::-webkit-scrollbar {
-#         width: 8px;
+#       .navbar {
+#         background-color: #f8f9fa;
+#         padding: 0.5rem 1rem;
+#         box-shadow: 0 2px 4px rgba(255, 165, 0, 1);
 #       }
-
-#       ::-webkit-scrollbar-track {
-#         background: #f1f1f1;
+#       .navbar-brand {
+#         font-weight: bold;
+#         font-size: 1.25rem;
+#         color: #333;
 #       }
-
-#       ::-webkit-scrollbar-thumb {
-#         background: #888;
-#         border-radius: 4px;
+#       .navbar-nav .nav-link {
+#         color: #333;
+#         font-size: 1rem;
+#         margin-right: 1rem;
 #       }
-
-#       ::-webkit-scrollbar-thumb:hover {
-#         background: #555;
+#       .navbar-nav .nav-link:hover {
+#         color: #007bff;
 #       }
-
-#       .chat-header {
-#         text-align: center;
-#         margin-bottom: 20px;
-#       }
-
-#       .chat-container {
-#         max-width: 1000px;
-#         margin: 20px auto;
-#         padding: 20px;
-#         background-color: #fff;
+#       .card {
 #         border-radius: 10px;
-#         box-shadow: 0 0 10px rgba(255, 165, 0, 1);
+#         box-shadow: 0 4px 8px rgba(255, 165, 0, 1);
+#         transition: transform 0.3s ease;
+#         cursor: pointer; /* Change cursor to pointer on hover */
 #       }
-
-#       .chat-messages-container {
-#         max-height: 400px; /* Adjust as needed */
-#         overflow-y: auto;
-#         padding-right: 16px; /* Add space for the scrollbar */
+#       .card:hover {
+#         transform: translateY(-5px);
 #       }
-
-#       .chat-messages {
-#         list-style: none;
-#         padding: 0;
-#         margin: 0;
+#       .card a {
+#         text-decoration: none; /* Remove underline for anchor tags inside cards */
 #       }
-
-#       .message {
-#         background-color: #f2f2f2;
-#         border-radius: 15px;
-#         padding: 10px;
-#         margin-bottom: 10px;
-#         position: relative;
-#       }
-
-#       .message .content {
-#         font-size: 16px;
+#       .card-title {
 #         color: #333;
-#         line-height: 1.4;
-#         padding: 5px;
-#         margin-top: 5px;
+#         font-size: 1.2rem;
+#         margin-bottom: 10px;
 #       }
-
-#       .message .timestamp {
-#         font-size: 12px;
+#       .card-text {
 #         color: #666;
-#         position: absolute;
-#         bottom: 5px;
-#         right: 5px;
+#         font-size: 0.9rem;
 #       }
-
-#       .message .from-number {
-#         font-size: 14px;
-#         color: #333;
-#         margin-bottom: 5px;
+#       .container {
+#         max-width: 800px;
+#         margin-top: 50px;
 #       }
-
-#       .freeze-btn {
-#         margin-bottom: 10px;
+#       .footer {
+#         margin-top: 50px;
+#         text-align: center;
+#         color: #666;
 #       }
 #     </style>
 #   </head>
 #   <body>
-#     <div class="chat-header">
-#       <h2>Chat with {{ number }}</h2>
+#     <!-- Navigation Bar -->
+#     <nav class="navbar navbar-expand-lg navbar-light">
+#       <a class="navbar-brand" href="/">FAQ</a>
+#       <a class="navbar-brand" href="/">About</a>
+#       <!-- Add other navigation links here -->
+#     </nav>
+
+#     <!-- Introduction -->
+#     <div class="container mt-5">
+#       <h2>{{ homepage_design.introduction_header }}</h2>
+#       <p>{{ homepage_design.introduction_body }}</p>
+#       <!-- Edit icon -->
+#       <a href="{% url 'edit_homepage_design' %}"><i class="fas fa-edit"></i></a>
 #     </div>
-#     <div class="chat-container">
-#       <button class="freeze-btn" onclick="toggleAutoReload()">
-#         Freeze Auto-Reload
-#       </button>
-#       <div class="chat-messages-container">
-#         <ul class="chat-messages" id="messages">
-#           <!-- Messages will be dynamically added here -->
-#         </ul>
+
+#     <!-- Content -->
+#     <div class="container">
+#       <h2 class="text-center mb-4">Available Numbers</h2>
+#       <div class="row">
+#         {% for number in numbers %}
+#         <div class="col-md-4 mb-4">
+#           <a href="{% url 'chat_window' number.number %}" class="card-link">
+#             <div class="card">
+#               <div class="card-body">
+#                 <h5 class="card-title">{{ number.number }}</h5>
+#                 <p class="card-text">clich to see texts</p>
+#               </div>
+#             </div>
+#           </a>
+#         </div>
+#         {% endfor %}
 #       </div>
 #     </div>
 
-#     <script>
-#       var chatWindowUrl = "{% url 'message' number %}";
-#       var autoReloadIntervalId;
+#     <!-- Footer -->
+#     <div class="footer">
+#       <p>&copy; 2024 Your Company. All rights reserved.</p>
+#     </div>
 
-#       function formatTimestamp(timestamp) {
-#         var date = new Date(timestamp);
-#         return date.toLocaleString();
-#       }
-
-#       function scrollToBottom() {
-#         var container = $(".chat-messages-container");
-#         container.scrollTop(container.prop("scrollHeight"));
-#       }
-
-#       function updateMessages() {
-#         $.ajax({
-#           url: chatWindowUrl,
-#           success: function (data) {
-#             console.log("Received data:", data);
-#             $("#messages").empty();
-#             $.each(data.messages, function (index, message) {
-#               console.log("Message:", message);
-#               var formattedTimestamp = formatTimestamp(message.timestamp);
-#               var messageHtml = `
-#                           <li class="message">
-#                               <div class="from-number">${message.from_number}</div>
-#                               <div class="content">${message.message_body}</div>
-#                               <div class="timestamp">${formattedTimestamp}</div>
-#                           </li>`;
-#               $("#messages").append(messageHtml);
-#             });
-#             scrollToBottom(); // Scroll to bottom after updating messages
-#           },
-#           error: function (xhr, status, error) {
-#             console.error("Error fetching messages:", error);
-#           },
-#         });
-#       }
-
-#       function toggleAutoReload() {
-#         if (autoReloadIntervalId) {
-#           clearInterval(autoReloadIntervalId);
-#           autoReloadIntervalId = null;
-#           $(".freeze-btn").text("Resume Auto-Reload");
-#         } else {
-#           updateMessages(); // Update messages immediately when resuming auto-reload
-#           autoReloadIntervalId = setInterval(updateMessages, 5000);
-#           $(".freeze-btn").text("Freeze Auto-Reload");
-#         }
-#       }
-
-#       $(document).ready(function () {
-#         autoReloadIntervalId = setInterval(updateMessages, 5000);
-#       });
-#     </script>
+#     <!-- Bootstrap JS (optional) -->
+#     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+#     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+#     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 #   </body>
 # </html>

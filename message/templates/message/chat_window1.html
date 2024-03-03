@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Number Details</title>
+    <!-- Include jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+
+      /* Scroll bar style */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      .chat-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .chat-container {
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 165, 0, 1);
+      }
+
+      .chat-messages-container {
+        max-height: 400px; /* Adjust as needed */
+        overflow-y: auto;
+        padding-right: 16px; /* Add space for the scrollbar */
+      }
+
+      .chat-messages {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .message {
+        background-color: #f2f2f2;
+        border-radius: 15px;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: relative;
+      }
+
+      .message .content {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.4;
+        padding: 5px;
+        margin-top: 5px;
+      }
+
+      .message .timestamp {
+        font-size: 12px;
+        color: #666;
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+      }
+
+      .message .from-number {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-header">
+      <h2>Chat with {{ number }}</h2>
+    </div>
+    <div class="chat-container">
+      <div class="chat-messages-container" id="chat-messages-container">
+        <ul class="chat-messages" id="messages">
+          <!-- Messages will be dynamically added here -->
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      var chatWindowUrl = "{% url 'message' number %}";
+
+      function formatTimestamp(timestamp) {
+        var date = new Date(timestamp);
+        return date.toLocaleString();
+      }
+
+      function scrollToBottom() {
+        var container = $("#chat-messages-container");
+        container.scrollTop(container.prop("scrollHeight"));
+      }
+
+      function updateMessages() {
+        var container = $("#chat-messages-container");
+        var isAtBottom =
+          container.prop("scrollHeight") - container.scrollTop() ===
+          container.outerHeight();
+
+        $.ajax({
+          url: chatWindowUrl,
+          success: function (data) {
+            console.log("Received data:", data);
+            var messagesContainer = $("#messages");
+            var shouldScroll = isAtBottom; // Determine if the scroll bar should stay at the bottom
+
+            messagesContainer.empty();
+            $.each(data.messages, function (index, message) {
+              console.log("Message:", message);
+              var formattedTimestamp = formatTimestamp(message.timestamp);
+              var messageHtml = `
+                          <li class="message">
+                              <div class="from-number">${message.from_number}</div>
+                              <div class="content">${message.message_body}</div>
+                              <div class="timestamp">${formattedTimestamp}</div>
+                          </li>`;
+              messagesContainer.append(messageHtml);
+            });
+
+            if (shouldScroll) {
+              scrollToBottom(); // Scroll to bottom if the scroll bar was at the bottom
+            }
+          },
+          error: function (xhr, status, error) {
+            console.error("Error fetching messages:", error);
+          },
+        });
+      }
+
+      $(document).ready(function () {
+        updateMessages();
+        setInterval(updateMessages, 3000);
+      });
+    </script>
+  </body>
+</html>

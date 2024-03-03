@@ -1,0 +1,170 @@
+/* Reset default styles */
+.navbar {
+  background-color: #ffffff; /* White background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
+}
+.nav-link{
+    text-decoration: none; /* Remove default underline */
+    position: relative;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Example of elegant font */
+    font-size: 20px;
+    font-weight: 520; /* Example of a slightly heavier font weight */
+    color: #000000; /* Black color */
+  }
+  
+  .nav-link:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px; /* Thickness of the underline */
+    background-color: #00b289; /* Color of the underline */
+    position: absolute;
+    bottom: -10px; /* Position the underline below the text */
+    left: 0;
+    transition: width 0.3s ease; /* Smooth transition effect */
+  }
+  
+  .nav-link:hover:after {
+    width: 100%; /* Expand the underline on hover */
+  }
+
+
+
+  /* introduction */
+ 
+  
+  .sms-header {
+    font-size: 32px;
+    font-weight: bold;
+    color: #444f60;
+  }
+  
+  .teal-line {
+    width: 120px; /* 1/3 of the length of the text */
+    height: 5.5px;
+    background-color: #00b289; /* Teal color */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .online {
+    margin-top: 25px;
+    font-size: 48px;
+    font-weight: bold;
+    color: #444f60; /* Black color */
+  }
+  
+  .teal {
+    color: #00b289; /* Teal color */
+  }
+  
+  .introduction {
+    font-style: normal;
+    font-weight: 400;
+    color: #999; /* Ash color */
+    font-size: 20px;
+    line-height: 25px;
+    margin-top: 25px;
+  }
+  
+  
+  
+  
+  /* latest number */
+  .card_latest_number {
+    display: flex; /* Make the card a flex container */
+    flex-direction: row;  /* Arrange items in a row */
+    border: 1px solid #ddd; /* Add a border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 1rem; /* Add some padding inside the card */
+    margin-bottom: 1rem; /* Add space between cards */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .card_latest_number_image {
+    flex: 0 0 20%; /* Set a fixed width for the image */
+    margin-right: 1rem; /* Add margin between image and content */
+  }
+  
+  .card_content_latest_number {
+    flex: 1; /* Allow content to fill remaining space */
+  }
+  
+  .card_content_latest_number .title{
+    font-family: "Nexa Bold", sans-serif;
+    font-size: 20px;
+    font-weight: bold; /* Example of a slightly heavier font weight */
+    color: #444f60
+    ; 
+  }
+  .primary-text{
+    color: #00b289;
+  }
+  .description{
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 400; /* Example of a slightly heavier font weight */
+    color: #686868
+
+  }
+
+  /*latest number button */
+.button {
+  display: inline-flex; /* Allow content to be side-by-side */
+  align-items: center; /* Vertically center content */
+  padding: 10px 15px; /* Adjust padding as needed */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #00b289; /* Teal color */ /* Adjust if needed */
+  color: #fff; /* White text color */
+  cursor: pointer; /* Pointer cursor on hover (optional) */
+  transition: background-color 0.2s ease-in-out; /* Optional: smooth background change on hover */
+}
+
+.button:hover {
+  background-color: #009973; /* Darker teal on hover (optional) */
+}
+
+/* .section.is-medium {
+  margin: 150px auto; 
+  text-align: center; 
+}
+
+.title.is-spaced.is-2 {
+  font-family: "Nexa Bold", sans-serif; 
+  font-size: 45px; 
+  font-weight: bold; 
+  color: #444f60; 
+  white-space: nowrap;
+} */
+
+.centered-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 70vh; /* Set container height to viewport height */
+}
+
+.centered-container h2 {
+  font-family: "Nexa Bold", sans-serif;
+  font-size: 45px; /* Relative font size based on viewport width */
+  font-weight: bold;
+  color: #444f60;
+  text-align: center; /* Center text horizontally */
+}
+
+/* Media query for smaller screens (e.g., mobile phones) */
+@media (max-width: 768px) {
+  .centered-container h2 {
+    font-size: 9vw; /* Adjust font size for smaller screens */
+    height: 400px;
+  }
+  .sms-header {
+    font-size: 28px;
+  }
+  .online {
+    margin-top: 15px;
+    font-size: 30px;
+  }
+}
