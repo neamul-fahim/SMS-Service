@@ -1,157 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Number Details</title>
-    <!-- Include jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f0f0f0;
-      }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24/7 free sms</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
 
-      /* Scroll bar style */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-      }
-
-      .chat-header {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-
-      .chat-container {
-        max-width: 1000px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(255, 165, 0, 1);
-      }
-
-      .chat-messages-container {
-        max-height: 400px; /* Adjust as needed */
-        overflow-y: auto;
-        padding-right: 16px; /* Add space for the scrollbar */
-      }
-
-      .chat-messages {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .message {
-        background-color: #f2f2f2;
-        border-radius: 15px;
-        padding: 10px;
-        margin-bottom: 10px;
-        position: relative;
-      }
-
-      .message .content {
-        font-size: 16px;
-        color: #333;
-        line-height: 1.4;
-        padding: 5px;
-        margin-top: 5px;
-      }
-
-      .message .timestamp {
-        font-size: 12px;
-        color: #666;
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-      }
-
-      .message .from-number {
-        font-size: 14px;
-        color: #333;
-        margin-bottom: 5px;
-      }
-    </style>
+    <link rel="stylesheet" href="static/message/css/home.css" />
   </head>
   <body>
-    <div class="chat-header">
-      <h2>Chat with {{ number }}</h2>
-    </div>
-    <div class="chat-container">
-      <div class="chat-messages-container" id="chat-messages-container">
-        <ul class="chat-messages" id="messages">
-          <!-- Messages will be dynamically added here -->
-        </ul>
+    {% load static %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">Your Logo Here</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="sms-header">#1 SMS Receiver App</h2>
+          <div class="teal-line"></div>
+          <p class="online">
+            Receive SMS<span class="teal"> Online 24/7</span>
+          </p>
+          <p class="introduction">
+            AnonymSMS is a totally free online service whereby you can receive
+            SMS messages online, without the need of inputting your own
+            mobile/cell number. Better yet, these temporary numbers are all
+            based on real SIM numbers, and means you will be able to view any
+            and all information received by this number online.
+          </p>
+        </div>
       </div>
     </div>
 
-    <script>
-      var chatWindowUrl = "{% url 'message' number %}";
+    <div class="container">
+      <div class="card_latest_number">
+        <div class="card_latest_number_image">
+          <img
+            src="static/message/media/us_flag1.svg"
+            alt="United States Flag"
+            class="image"
+          />
+        </div>
+        <div class="card_content_latest_number">
+          <p class="title is-5 mt-40">
+            Latest added number
+            <span class="primary-text">{{latest_number.number}} </span
+            >{{latest_number.country}}
+          </p>
+          <p class="description">
+            This is the latest added number on our service
+          </p>
+          <div class="pt-10 pb-10">
+            <a
+              href="https://247freesms.com/number/+13159300250"
+              class="button btn-align btn-more is-link color-primary"
+              style="text-decoration: none; color: #fff"
+            >
+              Check it out
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      function formatTimestamp(timestamp) {
-        var date = new Date(timestamp);
-        return date.toLocaleString();
-      }
+    <div class="centered-container">
+      <h2>Available Numbers</h2>
+    </div>
 
-      function scrollToBottom() {
-        var container = $("#chat-messages-container");
-        container.scrollTop(container.prop("scrollHeight"));
-      }
+    <div class="container">
+      <div class="row">
+        {% for number in numbers %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <!-- 1st Row -->
+              <div class="row">
+                <div class="col-6">
+                  <img
+                    src="{{ number.country_flag_image.url }}"
+                    class="img-fluid"
+                    alt="Number Image"
+                  />
+                </div>
+                <div class="col-6">
+                  <h5>{{ number.country }}</h5>
+                </div>
+              </div>
+              <!-- 2nd Row -->
+              <div class="row mt-3">
+                <div class="col-6">
+                  <h5>{{ number.number }}</h5>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-secondary">
+                    <i class="fa fa-copy"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- 3rd Row -->
+              <div class="row mt-3">
+                <div class="col-xs-6">
+                  <i class="fa fa-folder-open"></i>
+                  <span>Received {{ number.message_count }} SMS</span>
+                </div>
+              </div>
+              <!-- 4th Row -->
+              <div class="row mt-3">
+                <div class="col-xs-6">
+                  <i class="fa fa-clock"></i>
+                  <span>
+                    Last SMS Received {{ number.last_message_time_passed}}
+                  </span>
+                </div>
+              </div>
+              <!-- 5th Row -->
+              <div class="row mt-3">
+                <div class="col-xs-6">
+                  <i class="fa fa-plus"></i>
+                  <span>Added {{ number.time_passed }}</span>
+                </div>
+              </div>
+              <!-- 6th Row -->
+              <div class="row mt-3">
+                <div class="col-12">
+                  <button class="btn btn-primary btn-block">Receive SMS</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
 
-      function updateMessages() {
-        var container = $("#chat-messages-container");
-        var isAtBottom =
-          container.prop("scrollHeight") - container.scrollTop() ===
-          container.outerHeight();
-
-        $.ajax({
-          url: chatWindowUrl,
-          success: function (data) {
-            console.log("Received data:", data);
-            var messagesContainer = $("#messages");
-            var shouldScroll = isAtBottom; // Determine if the scroll bar should stay at the bottom
-
-            messagesContainer.empty();
-            $.each(data.messages, function (index, message) {
-              console.log("Message:", message);
-              var formattedTimestamp = formatTimestamp(message.timestamp);
-              var messageHtml = `
-                          <li class="message">
-                              <div class="from-number">${message.from_number}</div>
-                              <div class="content">${message.message_body}</div>
-                              <div class="timestamp">${formattedTimestamp}</div>
-                          </li>`;
-              messagesContainer.append(messageHtml);
-            });
-
-            if (shouldScroll) {
-              scrollToBottom(); // Scroll to bottom if the scroll bar was at the bottom
-            }
-          },
-          error: function (xhr, status, error) {
-            console.error("Error fetching messages:", error);
-          },
-        });
-      }
-
-      $(document).ready(function () {
-        updateMessages();
-        setInterval(updateMessages, 3000);
-      });
-    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>

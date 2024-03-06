@@ -1,0 +1,144 @@
+#provider-phone {
+    font-family: "Nexa Bold", sans-serif;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 43px;
+    color: #00b289;
+  }
+
+  .section-title{
+    font-family: "Nexa Bold", sans-serif;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 43px;
+    color: rgb(68, 79, 96);
+  }
+
+   /* .fa-copy {
+    font-family: "Nexa Bold", sans-serif;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 43px;
+    color: rgb(68, 79, 96);
+    margin-left: 10px; 
+  }  */
+
+  /* Styling the texts */
+  .list-text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 450;
+    font-size: 20px;
+    line-height: 30px;
+    color: rgb(74, 74, 74);
+  }
+
+  /* Styling the buttons */
+  .button {
+    background-color: #00b289;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  .solid-list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust spacing between items */
+}
+
+.list-bullet {
+    margin-right: 10px; /* Adjust spacing between bullet and text */
+}
+.button.button-cta {
+  color: #fff; /* Keep button text color */
+  border-radius: 4px; /* Adjust border radius as needed */
+}
+.button.button-cta:hover {
+  text-decoration: none; /* Remove underline on hover */
+  color: white; /* Keep button text color on hover */
+  background-color: #009973;
+}
+
+
+/* Table container */
+.table-container {
+  max-height: 300px; /* Adjust height as needed */
+  overflow-y: auto;
+  border-radius: 8px; /* Add rounded corners */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+/* Table */
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table header */
+/* Table header */
+.section-message{
+  margin-top: 100px;
+  margin-bottom: 400px; /*---------------------------------------------- remove */
+}
+.table-container th {
+  padding: 8px; /* Reduce padding for header */
+  text-align: left;
+  position: sticky;
+  top: 0;
+  background-color: #f9f9f9;
+  z-index: 1;
+  font-weight: bold;
+}
+
+/* Table body */
+.table-container td {
+  padding: 12px 8px; /* Maintain padding for body */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  margin-top: 2px; /* Add a slight margin-top */
+}
+
+/* Table header */
+/* .table-container th {
+  position: sticky;
+  top: 0;
+  background-color: #f9f9f9;
+  z-index: 1;
+  font-weight: bold; 
+} */
+
+
+/* Alternate row colors */
+.table-container tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Hover effect */
+.table-container tbody tr:hover {
+  background-color: #eaeaea;
+}
+
+/* Scrollbar */
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+/* .table tbody{
+  display: block;
+}
+.table thead tr {
+  display: block;
+} */

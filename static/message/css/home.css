@@ -82,9 +82,9 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
   
-  .card_latest_number_image {
-    flex: 0 0 20%; /* Set a fixed width for the image */
-    margin-right: 1rem; /* Add margin between image and content */
+  .card_latest_number_image img {
+    margin-right: 1rem; 
+    border-radius: 10px;
   }
   
   .card_content_latest_number {
@@ -140,10 +140,11 @@
 } */
 
 .centered-container {
+  margin-top: 120px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  height: 70vh; /* Set container height to viewport height */
 }
 
 .centered-container h2 {
@@ -154,12 +155,84 @@
   text-align: center; /* Center text horizontally */
 }
 
-/* Media query for smaller screens (e.g., mobile phones) */
+
+/* Available Numbers */
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body img {
+  max-width: 100%;
+}
+
+.card-body h5 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.card-body button {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.card-body i {
+  margin-right: 8px;
+  font-size: 16px;
+  color: #666;
+}
+.flag-image {
+  border-radius: 10px; /* Adjust the value as needed */
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1); /* Adjust the shadow as needed */
+
+}
+
+
+.card-body span {
+  font-size: 14px;
+  color: #666;
+}
+
+.card-body .btn-primary {
+  background-color: #00b289;
+  border-color: #00b289;
+}
+
+.card-body .btn-primary:hover,
+.card-body .btn-primary:active,
+.card-body .btn-primary:focus{
+  background-color: #009973;
+  border-color: #009973;
+  box-shadow: none;
+}
+.copy-button {
+  border: none; /* Remove border */
+  background-color: transparent; /* Make background transparent */
+  padding: 0; /* Remove padding */
+  cursor: pointer; /* Change cursor to pointer */
+}
+.copy-button:hover,
+.copy-button:focus,
+.copy-button:active {
+    background-color: transparent; /* Remove background color on hover, focus, and click */
+    box-shadow: none; /* Remove box shadow on hover, focus, and click */
+}
+
+
 @media (max-width: 768px) {
-  .centered-container h2 {
-    font-size: 9vw; /* Adjust font size for smaller screens */
-    height: 400px;
+  .centered-container{
+    margin-top: 100px;
   }
+  .centered-container h2{
+    font-size:35px;
+  }
+ 
   .sms-header {
     font-size: 28px;
   }
@@ -167,4 +240,15 @@
     margin-top: 15px;
     font-size: 30px;
   }
+  .card_latest_number {
+    display: flex;
+    flex-direction: column; /* Stack elements with image on top */
+  }
+
+  .card_latest_number_image {
+    order: 0; 
+    margin-bottom: 10px; 
+  }
+  
 }
+
