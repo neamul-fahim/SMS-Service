@@ -65,80 +65,116 @@
 
 
 /* Table container */
+
+/* Add round borders and shadow */
 .table-container {
-  max-height: 300px; /* Adjust height as needed */
-  overflow-y: auto;
-  border-radius: 8px; /* Add rounded corners */
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  border: 1px solid #ddd; /* Border color */
+  width: 60%; /* Occupies 3/4 space on the screen */
+  overflow-y: auto; /* Vertical scrollbar will appear if content overflows */
+  border-radius: 10px; /* Round borders */
+  box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1); /* Shadow */
 }
 
-/* Table */
-
-.table-container table {
+#message-table {
   width: 100%;
-  border-collapse: collapse;
+  table-layout: fixed; /* Fix the table layout */
+  border-collapse: separate; /* Ensure border-spacing works */
+  border-spacing: 0; /* Remove default spacing between cells */
 }
 
-/* Table header */
-/* Table header */
-.section-message{
-  margin-top: 100px;
-  margin-bottom: 400px; /*---------------------------------------------- remove */
+/* Styling for even and odd rows */
+#message-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2; /* Light gray for even rows */
 }
-.table-container th {
-  padding: 8px; /* Reduce padding for header */
-  text-align: left;
-  position: sticky;
+
+#message-table tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* White for odd rows */
+}
+
+/* Style for table header */
+#message-table th {
+  position: sticky; /* Stick the header */
   top: 0;
-  background-color: #f9f9f9;
-  z-index: 1;
-  font-weight: bold;
+  background-color: white; /* Ensure the header remains visible */
+  z-index: 1; /* Ensure header appears above the body */
+  border-top: 2px solid transparent; /* Add border to separate header from body */
+  border-bottom: 2px solid #ddd; /* Add border at bottom of header */
 }
 
-/* Table body */
-.table-container td {
-  padding: 12px 8px; /* Maintain padding for body */
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  margin-top: 2px; /* Add a slight margin-top */
+/* Style for table body */
+#message-table tbody {
+  display: block;
+  overflow-y: auto; /* Make tbody scrollable */
+  max-height: 500px; /* Limit height to prevent overlap */
+  border-top: 0px solid #ddd; /* Add border at top of tbody */
 }
 
-/* Table header */
-/* .table-container th {
-  position: sticky;
-  top: 0;
-  background-color: #f9f9f9;
-  z-index: 1;
-  font-weight: bold; 
-} */
-
-
-/* Alternate row colors */
-.table-container tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+#message-table tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
-/* Hover effect */
-.table-container tbody tr:hover {
-  background-color: #eaeaea;
+#message-table td {
+  word-wrap: break-word; /* Wrap long text */
 }
 
-/* Scrollbar */
-.table-container::-webkit-scrollbar {
+/* Elegant scrollbar */
+/* Webkit (Chrome, Safari, Opera) */
+::-webkit-scrollbar {
   width: 8px;
 }
 
-.table-container::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
 }
 
-.table-container::-webkit-scrollbar-track {
-  background-color: transparent;
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
 }
-/* .table tbody{
-  display: block;
+
+.message-container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
 }
-.table thead tr {
-  display: block;
-} */
+
+.table-container {
+  flex: 2;
+  margin-right: 20px; /* Adjust as needed */
+}
+
+.column.is-4 {
+  flex: 1;
+}
+
+.flex-card {
+  border-radius: 10px;
+  border: 1px solid #ddd; /* Border color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow */
+}
+
+.flex-card-header {
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Border color */
+}
+
+.flex-card .card-body {
+  padding: 20px;
+}
+
+/* Optional: Hover effect */
+.hover-inset:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.columns {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Optional: Add margin between each row */
+.columns + .columns {
+  margin-top: 10px; /* Adjust as needed */
+}

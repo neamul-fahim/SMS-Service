@@ -80,82 +80,71 @@
     </div>
 
     <!-- Messages -->
- 
-    <div class="section-message">
-      <div class="container">
-        <input type="hidden" id="message-number" value="{{ number.number }}">
-        <div class="columns">
-          <div class="column is-8">
-            <div class="table-container">
-              <table id="message-table" class="table is-striped">
-                <thead>
-                  <tr>
-                    <th>From</th>
-                    <th>Text</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Messages will be dynamically added here -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-     
-            {% comment %} <div class="m-auto text-center"></div>
-          </div>
-          <div class="column is-4">
-            <div class="flex-card light-bordered hover-inset">
-              <div class="flex-card-header">
-                <div class="header-avatar">
-                  <h3 class="text-bold">Sim card information</h3>
-                </div>
-              </div>
-              <div class="card-body is-small">
-                <div class="content">
-                  <div class="columns">
-                    <div class="column is-6 text-left">
-                      <span class="is-size-5"> Status</span>
-                    </div>
-                    <div class="column is-6 text-right">
-                      <span class="is-size-5">Online</span>
-                    </div>
-                  </div>
-                  <div class="columns">
-                    <div class="column is-6 text-left">
-                      <span class="is-size-5"> Country</span>
-                    </div>
-                    <div class="column is-6 text-right">
-                      <span class="is-size-5">UNITED STATES (US)</span>
-                    </div>
-                  </div>
-                  <div class="columns">
-                    <div class="column is-6 text-left">
-                      <span class="is-size-5"> Received</span>
-                    </div>
-                    <div class="column is-6 text-right">
-                      <span class="is-size-5">3 SMS</span>
-                    </div>
-                  </div>
-                  <div class="columns">
-                    <div class="column is-6 text-left">
-                      <span class="is-size-5"> Active since</span>
-                    </div>
-                    <div class="column is-6 text-right">
-                      <span class="is-size-5">10 months ago</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> {% endcomment %}
 
+    <input type="hidden" id="message-number" value="{{ number.number }}" />
+
+    <div class="container message-container">
+      <div class="table-container">
+        <table id="message-table" class="table is-striped">
+          <thead>
+            <tr>
+              <th>From</th>
+              <th>Text</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Messages will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+      <div class="column is-4">
+        <div class="flex-card light-bordered hover-inset">
+          <div class="flex-card-header">
+            <div class="header-avatar">
+              <h3 class="text-bold">Sim card information</h3>
+            </div>
+          </div>
+          <div class="card-body is-small">
+            <div class="content">
+              <div class="columns">
+                <div class="column is-6 text-left">
+                  <span class="is-size-5"> Status</span>
+                </div>
+                <div class="column is-6 text-right">
+                  <span class="is-size-5">Online</span>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column is-6 text-left">
+                  <span class="is-size-5"> Country</span>
+                </div>
+                <div class="column is-6 text-right">
+                  <span class="is-size-5">UNITED STATES (US)</span>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column is-6 text-left">
+                  <span class="is-size-5"> Received</span>
+                </div>
+                <div class="column is-6 text-right">
+                  <span class="is-size-5">3 SMS</span>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column is-6 text-left">
+                  <span class="is-size-5"> Active since</span>
+                </div>
+                <div class="column is-6 text-right">
+                  <span class="is-size-5">10 months ago</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
     <!-- Link the JavaScript file -->
     <script>
       // Check if the number is defined in the template
