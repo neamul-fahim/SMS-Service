@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'message',
-    'django_countries',
     'rest_framework',
 ]
 
